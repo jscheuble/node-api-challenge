@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../data/helpers/projectModel");
+const actionsDb = require("../data/helpers/actionModel");
 
 const router = express.Router();
 
@@ -48,6 +49,17 @@ router.post("/", (req, res) => {
       res
         .status(500)
         .json({ message: "unable to add this project to the database" });
+    });
+});
+
+router.post("/:id/actions", validateProjectId, (req, res) => {
+  actionsDb
+    .insert(req.body)
+    .then((action) => {
+      res.status(201).json({ message: "success", action });
+    })
+    .catch(() => {
+      res.status(500).json({ message: "unable to create action" });
     });
 });
 

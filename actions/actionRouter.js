@@ -23,6 +23,28 @@ router.get("/:id", validateActionId, (req, res) => {
     });
 });
 
+router.delete("/:id", validateActionId, (req, res) => {
+  db.remove(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: "succesfully deleted. catch u l8r" });
+    })
+    .catch(() => {
+      res.status(500).json({ message: "unable to delete :( " });
+    });
+});
+
+router.put("/:id", validateActionId, (req, res) => {
+  db.update(req.params.id, req.body)
+    .then((action) => {
+      res.status(200).json({ message: "success", action });
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({ message: "there was an error while updating this action" });
+    });
+});
+
 function validateActionId(req, res, next) {
   db.get(req.params.id)
     .then((action) => {
