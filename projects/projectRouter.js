@@ -23,6 +23,16 @@ router.get("/:id", validateProjectId, (req, res) => {
     });
 });
 
+router.get("/:id/actions", validateProjectId, (req, res) => {
+  db.getProjectActions(req.params.id)
+    .then((actions) => {
+      res.status(200).json(actions);
+    })
+    .catch(() => {
+      res.status(500).json({ message: "unable to retrieve project actions" });
+    });
+});
+
 router.post("/", (req, res) => {
   if (req.body.name === "" || req.body.description === "") {
     res.status(200).json({
@@ -72,7 +82,7 @@ function validateProjectId(req, res, next) {
       proj ? next() : res.status(400).json({ message: "invalid project id" });
     })
     .catch(() => {
-      res.status(500).json({ message: "invalid project id" });
+      res.status(500).json({ message: "unable to validate project id" });
     });
 }
 
