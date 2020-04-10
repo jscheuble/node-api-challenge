@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Routing is the main feature of Express that allows us to break up our application into smaller, organized modules.
+I also learned that Express is lightweight and simplifies the process of building APIs.
+
 - [ ] Describe Middleware?
+
+Middleware is an array of functions that are executed in the order they are introduced to our code. We can use middleware to intercept the flow of our code to do something like check for authentication, validate an id, or log something to the console.
 
 - [ ] Describe a Resource?
 
+A resource is something that is returned from the database when we make a request to it. Different endpoints return different resources.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+We can send a status message of 200 or 201 for a post request, and a message or response object to let the client know the request was successful.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can do this with routing, which is one of the main features of express. We can create directories that each contain the routers and handler functions for different related resources.
 
 ## Minimum Viable Product
 
